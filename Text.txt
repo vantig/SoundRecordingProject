@@ -1,0 +1,11 @@
+r TNT AC-DC metal 2.01  33 AC-DC Metalworkers 
+j Barracuda Audiophysical Blues 3.09 51 USA 1968 
+c Piano-Sonata-3 Mozart Sonata 3.14 19 piano 1 
+p Ruin Shawn-Mendes disco 4.02 25 1
+r Lithium Nirvana hard-rock 3.12 23 Nirvana  Rockers
+j Unforgettable Nat-King-Cole lite-jazz 4.15 29 UK 1982 
+c Jupiter Mozart  Molto-Allegro 2.54 31 violin 1 
+j Medley KennyG Lounge-jazz 2.15 29 USA 1956
+p MIKA Emily europop  1.54 24 1 
+r We-Will-Rock-You Queen hard-rock 2.19 38 Queen hippie
+c Spring Vivaldi Symphony 5.16 54 piano 0
