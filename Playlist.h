@@ -37,10 +37,12 @@ std::shared_ptr<BaseTrack> Playlist::findMusicinRange(double start, double finis
 {
 	std::for_each(this->music.begin(),this-> music.end(), [start,finish](auto temp) 
 		{
-			if (temp->getDuration()<=finish&& start <= temp->getDuration())
+			double x=temp->getDuration();
+			if (x >= start && x<=finish )
 			{
 				std::cout << temp;
 				return temp;
+				
 			}
 			
 		});

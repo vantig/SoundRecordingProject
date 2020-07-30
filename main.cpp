@@ -9,11 +9,10 @@ int main()
 
 	/*	std::cout << " enter style ";
 		std::string str;		std::cin >> str;
-		playlist.createPlaylistByStyle(in,str);*/
+		playlist.createPlaylistByStyle(in,str);
 		
-		double temp = disk.getsizeDisk();
+		double temp = disk.getsizeDisk();*/
 		playlist.ReadinVector(in);
-		playlist.Print(std::cout);
 		playlist.findMusicinRange(0.37, 2.0);
 		
 	
