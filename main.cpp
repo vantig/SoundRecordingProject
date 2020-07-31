@@ -13,8 +13,10 @@ int main()
 		
 		double temp = disk.getsizeDisk();*/
 		playlist.ReadinVector(in);
-		playlist.findMusicinRange(0.37, 2.0);
-		
+		std::vector<std::shared_ptr<BaseTrack>>playlist1;
+		playlist.findAllMusicInRangeWithStyle(0.37, 7.0, "Classical", playlist1); 
+		std::copy(playlist1.begin(), playlist1.end(), std::ostream_iterator<std::shared_ptr<BaseTrack>>(std::cout, " "));
+
 	
 
 	/*	disk.Print(std::cout);

@@ -19,7 +19,7 @@ public:
 std::vector<std::shared_ptr<BaseTrack>>Playlist::findAllMusicInRangeWithStyle
 (double start, double finish, std::string str, std::vector<std::shared_ptr<BaseTrack>>&music1)
 {
-	std::for_each(music.begin(), music.end(), [&music1,str,start, finish](std::shared_ptr<BaseTrack> temp)
+	std::for_each(music.begin(), music.end(), [&music1,str,start, finish](std::shared_ptr<BaseTrack> &temp)
 		{
 			if (temp->getDuration() <= finish && start <= temp->getDuration()&&temp->getType()==str)
 			{
@@ -35,19 +35,13 @@ std::vector<std::shared_ptr<BaseTrack>>Playlist::findAllMusicInRangeWithStyle
 
 std::shared_ptr<BaseTrack> Playlist::findMusicinRange(double start, double finish)
 {
-	std::for_each(this->music.begin(),this-> music.end(), [start,finish](auto temp) 
-		{
-			double x=temp->getDuration();
-			if (x >= start && x<=finish )
-			{
-				std::cout << temp;
-				return temp;
-				
-			}
-			
-		});
-	std::shared_ptr<BaseTrack>null;
-	return null;
+	for (auto& track : this->music) {
+		double duration = track->getDuration();
+		if (duration >= start && duration <= finish) {
+			std::cout << track;
+			return track; /* или */
+		}
+	}
 }
 
 //void swap(std::shared_ptr<BaseTrack>a, std::shared_ptr<BaseTrack>b)
