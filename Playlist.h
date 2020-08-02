@@ -33,6 +33,7 @@ std::vector<std::shared_ptr<BaseTrack>>Playlist::findAllMusicInRangeWithStyle
 }
 
 
+
 std::shared_ptr<BaseTrack> Playlist::findMusicinRange(double start, double finish)
 {
 	for (auto& track : this->music) {
