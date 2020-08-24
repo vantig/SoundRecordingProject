@@ -27,7 +27,7 @@ void Playlist::ShuffleByStyle(std::string str)
 	int temp;
 	bool flag = true;
 	srand(time(0));
-	for (size_t i = 0; i < this->music.size(); i++)
+	for (size_t i = 0; i < (rand() % this->music.size()-1)+1; i++)
 	{
 		if (this->music[i]->getType() == str)
 		{

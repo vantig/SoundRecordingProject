@@ -182,7 +182,7 @@ tryAgain:	std::cin >> str;
 
 			
 				//Playlist
-				std::cout << "PLAYLIST:\n1 .Shuffle\n2 .Shuffle By Style\n3 .Find Music in Range\n4 .Find All Music In Range With Style\n5 .Back\n";
+				std::cout << "PLAYLIST:\n1 .Shuffle\n2 .Shuffle By Style\n3 .Find Music in Range\n4 .Find All Music In Range With Style\n5 .Print\n6 .Back\n";
 				std::cin >> temp;
 				switch (temp)
 				{
@@ -195,10 +195,42 @@ tryAgain:	std::cin >> str;
 					break;
 				}
 				case 2:
-				{
 					std::cout << "\nEnter style\n";
-					std::cin >> str;
+					
+				{std::cout << "\n1 .Rock\n2 .Pop\n3 .Jazz\n4 .Classical\n\n";
+				std::cin >> temp;
+				switch (temp)
+				{
+				case 1:
+				{
+					str = "Rock";
+					break;
+				}
+				case 2:
+				{
+					str = "Pop";
+					break;
+
+				}
+				case 3:
+				{
+					str = "Jazz";
+					break;
+
+				}
+				case 4:
+				{
+					str = "Classical";
+					break;
+
+				}
+				default:
+					break;
+				}
+					
+
 					playlist.ShuffleByStyle(str);
+					playlist.Print(std::cout);
 					break;
 				}
 				case 3:
@@ -217,12 +249,48 @@ tryAgain:	std::cin >> str;
 				    std::cin >> start;
 				    std::cout << "\nEnter finish\n";
 			     	std::cin >> finish;
-			    	std::cout << "\nEnter style\n";
-				    std::cin >> str;
+					std::cout << "\nEnter style\n";
+					std::cout << "\n1 .Rock\n2 .Pop\n3 .Jazz\n4 .Classical\n\n";
+					
+					std::cin >> temp;
+					switch (temp)
+					{
+					case 1:
+					{
+						str = "Rock";
+						break;
+					}
+					case 2:
+					{
+						str = "Pop";
+						break;
+
+					}
+					case 3:
+					{
+						str = "Jazz";
+						break;
+
+					}
+					case 4:
+					{
+						str = "Classical";
+						break;
+
+					}
+					default:
+						break;
+					}
+			    	
+				    
 					std::cout << playlist.findAllMusicInRangeWithStyle(start, finish,str);
 					break;
 				}
-				
+				case 5:
+				{
+					playlist.Print(std::cout);
+					break;
+				}
 				default:
 					temp = 10;
 					break;
