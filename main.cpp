@@ -24,19 +24,50 @@ tryAgain:	std::cin >> str;
 		goto tryAgain;
 	}
 	std::cout << "\n1 .Create Playlist\n2 .Create Playlist By Style\n\n";
+
 	std::cin >> temp;
 	switch (temp)
 	{
 	case 1:
 	{
+		
 		playlist.ReadinVector(in);
 		std::cout << "\nsuccessfully\n" << std::endl;
 		break;
 	}
 	case 2:
 	{
-		std::cout<<"\nEnter style\n";
-		std::cin>> str;
+		std::cout << "\n1 .Rock\n2 .Pop\n3 .Jazz\n4 .Classical\n\n";
+		std::cin >> temp;
+		switch (temp)
+		{
+		case 1:
+		{
+			str = "r";
+			break;
+		}
+		case 2:
+		{
+			str = "p";
+			break;
+
+		}
+		case 3:
+		{
+			str = "j";
+			break;
+
+		}
+		case 4:
+		{
+			str = "c";
+			break;
+
+		}
+		default:
+			break;
+		}
+		
 		playlist.createPlaylistByStyle(in,str);
 		std::cout << "\nsuccessfully\n" << std::endl;
 		break;
@@ -50,7 +81,8 @@ tryAgain:	std::cin >> str;
 		std::cin >> temp;
 		Disk disk(temp);
 		std::cout << "\nsuccessfully\n" << std::endl;
-		
+		disk.copyPlaylist(playlist);
+		std::cout << "\playlist copied to disk\n" << std::endl;
 		do
 		{
 			std::cout << "MENU:\n1 .Disk\n2 .Playlist\n0 .Exit\n";
@@ -60,8 +92,81 @@ tryAgain:	std::cin >> str;
 			case 1:
 			{
 				//Disk
-				std::cout << "DISK:\n1 .Free size\n2 .Duration of music\n3 .Find Music in Range\n4 .Find All Music In Range With Style\n5 .Print\n0 .Back\n";
+				std::cout << "DISK:\n1 .Free size\n2 .Duration of music\n3 .Find Music in Range\n4 .Find All Music In Range With Style\n5 .Print\n6 .Back\n";
+				std::cin >> temp;
+				switch (temp)
+				{
+				case 1:
+				{
+					std::cout << disk.getsizeDisk()<<std::endl;
+					break;
+				}
+				case 2:
+				{
+					std::cout << disk.DurationOfMusic() << std::endl;
+					break;
+				}
+				case 3:
+				{
+					double start, finish;
+					std::cout << "\nEnter start\n";
+					std::cin >> start;
+					std::cout << "\nEnter finish\n";
+					std::cin >> finish;
+					std::cout << disk.findMusicinRange(start,finish) << std::endl;
+					break;
+				}
+				case 4:
+				{
+					double start, finish;
+					std::cout << "\nEnter start\n";
+					std::cin >> start;
+					std::cout << "\nEnter finish\n";
+					std::cin >> finish;
+					std::cout << "\nEnter style\n";
+					std::cout << "\n1 .Rock\n2 .Pop\n3 .Jazz\n4 .Classical\n\n";
+					std::cin >> temp;
+					switch (temp)
+					{
+					case 1:
+					{
+						str = "Rock";
+						break;
+					}
+					case 2:
+					{
+						str = "Pop";
+						break;
 
+					}
+					case 3:
+					{
+						str = "Jazz";
+						break;
+
+					}
+					case 4:
+					{
+						str = "Classical";
+						break;
+
+					}
+					default:
+						break;
+					}
+					
+					std::cout << disk.findAllMusicInRangeWithStyle(start, finish, str);
+					break;
+				}
+				case 5:
+				{
+					disk.Print(std::cout);
+					break;
+				}
+				default:
+					temp = 10;
+					break;
+				}
 
 
 
@@ -77,7 +182,7 @@ tryAgain:	std::cin >> str;
 
 			
 				//Playlist
-				std::cout << "PLAYLIST:\n1 .Shuffle\n2 .Shuffle By Style\n3 .Find Music in Range\n4 .Find All Music In Range With Style\n0 .Back\n";
+				std::cout << "PLAYLIST:\n1 .Shuffle\n2 .Shuffle By Style\n3 .Find Music in Range\n4 .Find All Music In Range With Style\n5 .Back\n";
 				std::cin >> temp;
 				switch (temp)
 				{
@@ -119,6 +224,7 @@ tryAgain:	std::cin >> str;
 				}
 				
 				default:
+					temp = 10;
 					break;
 				}
 

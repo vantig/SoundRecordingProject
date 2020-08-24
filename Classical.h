@@ -22,7 +22,7 @@ public:
 	std::ostream& print(std::ostream& out)const override
 	{
 		BaseTrack::print(out);
-		out << " Main Instrument " << MainInstrument <<"relax(y/n)"<< relax << std::endl;
+		out << " Main Instrument " << MainInstrument <<" relax(y/n) "<< relax << std::endl;
 
 		return out;
 	}

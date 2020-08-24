@@ -22,14 +22,16 @@ public:
 	void copyPlaylist(Playlist&);
 
 	void Print(std::ostream&);
-	std::shared_ptr<BaseTrack> findMusicinRange(double start, double finish);
-
-	std::vector<std::shared_ptr<BaseTrack>>findAllMusicInRangeWithStyle(double start, double finish, std::string str, std::vector<std::shared_ptr<BaseTrack>>&);
+	
+	std::vector<std::shared_ptr<BaseTrack>> findMusicinRange(double start, double finish);
+	std::vector<std::shared_ptr<BaseTrack>>findAllMusicInRangeWithStyle(double start, double finish, std::string str);
 
 };
+
 std::vector<std::shared_ptr<BaseTrack>>Disk::findAllMusicInRangeWithStyle
-(double start, double finish, std::string str, std::vector<std::shared_ptr<BaseTrack>>& music1)
+(double start, double finish, std::string str)
 {
+	std::vector<std::shared_ptr<BaseTrack>>music1;
 	std::for_each(playlist.begin(), playlist.end(), [&music1, str, start, finish](std::shared_ptr<BaseTrack>& temp)
 		{
 			if (temp->getDuration() <= finish && start <= temp->getDuration() && temp->getType() == str)
@@ -38,21 +40,22 @@ std::vector<std::shared_ptr<BaseTrack>>Disk::findAllMusicInRangeWithStyle
 				music1.push_back(temp);
 			}
 		});
-	std::copy(music1.begin(), music1.end(), std::ostream_iterator<std::shared_ptr<BaseTrack>>(std::cout, " "));
 	return music1;
 
 }
-
-std::shared_ptr<BaseTrack> Disk::findMusicinRange(double start, double finish)
+std::vector<std::shared_ptr<BaseTrack>> Disk::findMusicinRange(double start, double finish)
 {
+	std::vector<std::shared_ptr<BaseTrack>>music1;
 	for (auto& track : this->playlist) {
 		double duration = track->getDuration();
 		if (duration >= start && duration <= finish) {
-			std::cout << track;
-			return track; 
+
+			music1.push_back(track);
 		}
 	}
+	return music1;
 }
+
 
 double Disk:: DurationOfMusic()
 {

@@ -71,7 +71,7 @@ std::vector<std::shared_ptr<BaseTrack>> Playlist::findMusicinRange(double start,
 	for (auto& track : this->music) {
 		double duration = track->getDuration();
 		if (duration >= start && duration <= finish) {
-			std::cout << track;
+		
 			music1.push_back( track); 
 		}
 	}
