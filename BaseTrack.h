@@ -31,7 +31,7 @@ public:
 	}
 	virtual	std::ostream& print(std::ostream& out)const
 	{
-		out <<type<< " name " << name << " style " << style << " duration " << duration<<" size "<<size ;
+		out << std::setw(10) <<type<< " | name " << std::setw(20) << name << std::setw(10)  <<" style " << std::setw(15) << style  << " duration " << std::setw(5) << duration<<" size " << std::setw(4) <<size ;
 		return out;
 	}
 	

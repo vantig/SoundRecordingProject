@@ -5,8 +5,8 @@ class Disk
 private:
 	std::vector<std::shared_ptr<BaseTrack>>playlist;
 	double freeSize ;
-protected:
-	void setsize(double d) { freeSize = d; }
+
+	
 public:
 
 	
@@ -14,7 +14,7 @@ public:
 	{
 		freeSize = s;
     };
-
+	void setsize(double d) { freeSize = d; }
 	~Disk() = default;
 	
 	double DurationOfMusic();
@@ -83,7 +83,10 @@ double Disk:: DurationOfMusic()
 
 void Disk:: copyPlaylist(Playlist& p)
 {
+	std::for_each(this->playlist.begin(), this->playlist.end(), [this](std::shared_ptr<BaseTrack> obj) {this->setsize(this->getsizeDisk() + obj->getSize()); });
+	this->playlist.clear();
 	double temp=this->freeSize ;
+	
 	std::copy_if(p.music.begin(), p.music.end(),back_inserter(playlist), [&temp,this]( std::shared_ptr<BaseTrack> b)
 	{
 

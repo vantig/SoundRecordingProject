@@ -1,6 +1,7 @@
 #pragma once
 #include <ctime> // для функции time()
 #include <cstdlib> // для функций rand() и srand()
+#include<iomanip>
 #include<vector>
 #include<fstream>
 #include<algorithm>

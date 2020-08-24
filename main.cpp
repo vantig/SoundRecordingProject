@@ -92,7 +92,7 @@ tryAgain:	std::cin >> str;
 			case 1:
 			{
 				//Disk
-				std::cout << "DISK:\n1 .Free size\n2 .Duration of music\n3 .Find Music in Range\n4 .Find All Music In Range With Style\n5 .Print\n6 .Back\n";
+				std::cout << "DISK:\n1 .Free size\n2 .Duration of music\n3 .Find Music in Range\n4 .Find All Music In Range With Style\n5 .Print\n6 .Copy playlist\n7 .Back\n";
 				std::cin >> temp;
 				switch (temp)
 				{
@@ -161,6 +161,12 @@ tryAgain:	std::cin >> str;
 				case 5:
 				{
 					disk.Print(std::cout);
+					break;
+				}
+				case 6:
+				{
+					
+				    disk.copyPlaylist(playlist);
 					break;
 				}
 				default:

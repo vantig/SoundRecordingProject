@@ -22,7 +22,7 @@ public:
 	std::ostream& print(std::ostream& out)const override
 	{
 		BaseTrack::print(out);
-		out << " artist " << dancing << std::endl;
+		out << " dancing(y/n) " << dancing << std::endl;
 
 		return out;
 	}

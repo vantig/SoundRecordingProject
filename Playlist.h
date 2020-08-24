@@ -12,9 +12,9 @@ public:
 	void createPlaylistByStyle(std::istream& ,std::string );
 	void shuffle();
 	void ShuffleByStyle(std::string);
-	std::vector<std::shared_ptr<BaseTrack>>music;
 	std::vector<std::shared_ptr<BaseTrack>>findMusicinRange(double start, double finish);
 	std::vector<std::shared_ptr<BaseTrack>>findAllMusicInRangeWithStyle(double start, double finish, std::string str);
+	std::vector<std::shared_ptr<BaseTrack>>music;
 
 };
 std::ostream& operator<<(std::ostream& out, std::vector<std::shared_ptr<BaseTrack>>v)
