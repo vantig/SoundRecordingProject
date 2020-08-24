@@ -167,6 +167,7 @@ tryAgain:	std::cin >> str;
 				{
 					
 				    disk.copyPlaylist(playlist);
+					std::cout << "\nsuccessfully\n" << std::endl;
 					break;
 				}
 				default:
