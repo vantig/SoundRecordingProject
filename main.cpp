@@ -3,126 +3,139 @@
 
 int main()
 {
-	int  choice;
-	bool flag=1;
+	
 	Playlist playlist;
-	std::ifstream in("Text.txt");
-	while (flag)
+	bool flag = 1;
+	int  temp;
+	std::cout << "\nto create a playlist ENTER the name of the music file" << std::endl;
+	std::string str;
+tryAgain:	std::cin >> str;
+	std::ifstream in(str);
+	if (in.is_open())
 	{
-		std::cout <<
-			"1.create and initial playlist" << std::endl
-			<< "2.create and initial playlist by style" << std::endl
-			<< "0.exit" << std::endl;
-		std::cin >> choice;
-			
-		switch (choice)
-		{
-		case 1:
-		{
-
-			
-			playlist.ReadinVector(in);	
-			bool flag=1;
-			while (flag)
-			{
-				std::cout <<
-					"1.create disk" << std::endl
-					<<"2.copy playlist on the disk"<< std::endl
-					<< "0.exit" << std::endl;
-				int  choice;
-				std::cin >> choice;
-				switch (choice)
-				{
-				case 1:
-				{
-					std::cout << " Enter size of the disk" << std::endl;
-					int temp;
-					std::cin >> temp;
-					Disk disk(temp);
-
-				}
-				
-				case 0:
-				{
-					exit;
-				}
-				default:continue;
-					break;
-				}
-			}
-		}
 		
-		case 2:
+		std::cout << "\nsuccessfully\n" << std::endl;
+
+	}
+	else
+	{
+		std::cout << "\n NOT FOUND, try again\n" << std::endl;
+
+		goto tryAgain;
+	}
+	std::cout << "\n1 .Create Playlist\n2 .Create Playlist By Style\n\n";
+	std::cin >> temp;
+	switch (temp)
+	{
+	case 1:
+	{
+		playlist.ReadinVector(in);
+		std::cout << "\nsuccessfully\n" << std::endl;
+		break;
+	}
+	case 2:
+	{
+		std::cout<<"\nEnter style\n";
+		std::cin>> str;
+		playlist.createPlaylistByStyle(in,str);
+		std::cout << "\nsuccessfully\n" << std::endl;
+		break;
+	}
+	default:
+		break;
+	}
+
+	std::cout << "\nto create a disk ENTER the size of the disk" << std::endl;
+
+		std::cin >> temp;
+		Disk disk(temp);
+		std::cout << "\nsuccessfully\n" << std::endl;
+		
+		do
 		{
-			std::string s;
-			std::cout << "Enter style" << std::endl;
-			std::cin >> s;
-			playlist.createPlaylistByStyle(in,s);
-			bool flag=1;
-			while (flag)
+			std::cout << "MENU:\n1 .Disk\n2 .Playlist\n0 .Exit\n";
+			std::cin >> temp;
+			switch (temp)
 			{
-				std::cout <<
-					"1.create disk" << std::endl
-					<< "2.copy playlist on the disk" << std::endl
-					<< "0.exit" << std::endl;
-				int  choice;
-				std::cin >> choice;
-				switch (choice)
+			case 1:
+			{
+				//Disk
+				std::cout << "DISK:\n1 .Free size\n2 .Duration of music\n3 .Find Music in Range\n4 .Find All Music In Range With Style\n5 .Print\n0 .Back\n";
+
+
+
+
+				break;
+
+			
+
+			}
+			case 2:
+			{
+
+				
+
+			
+				//Playlist
+				std::cout << "PLAYLIST:\n1 .Shuffle\n2 .Shuffle By Style\n3 .Find Music in Range\n4 .Find All Music In Range With Style\n0 .Back\n";
+				std::cin >> temp;
+				switch (temp)
 				{
 				case 1:
-				
 				{
-					std::cout << " Enter size of the disk" << std::endl;
-					int temp;
-					std::cin >> temp;
-					Disk disk(temp);
+					playlist.shuffle();
 					
+					playlist.Print(std::cout);
+					std::cout << "\nsuccessfully\n" << std::endl;
+					break;
 				}
 				case 2:
-				
-				 
-				
-				case 0:
-				
-					exit;
-				
-				default:continue;
+				{
+					std::cout << "\nEnter style\n";
+					std::cin >> str;
+					playlist.ShuffleByStyle(str);
 					break;
 				}
+				case 3:
+				{
+					double start, finish;
+					std::cout<< "\nEnter start\n";
+					std::cin >> start;
+					std::cout << "\nEnter finish\n";
+					std::cin >> finish;
+					std::cout <<playlist.findMusicinRange(start,finish);
+					break;
+				}
+				case 4:
+				{ double start, finish;
+				    std::cout << "\nEnter start\n";
+				    std::cin >> start;
+				    std::cout << "\nEnter finish\n";
+			     	std::cin >> finish;
+			    	std::cout << "\nEnter style\n";
+				    std::cin >> str;
+					std::cout << playlist.findAllMusicInRangeWithStyle(start, finish,str);
+					break;
+				}
+				
+				default:
+					break;
+				}
+
+				break;
 			}
-		}
-		
-		case 0:
-		{
-			exit;
-		}
-		default:
-			break;
-		}
-	}
-	
-
-	/*	std::cout << " enter style ";
-		std::string str;		std::cin >> str;
-		playlist.createPlaylistByStyle(in,str);
-		
-		double temp = disk.getsizeDisk();*/
-	
-		std::vector<std::shared_ptr<BaseTrack>>playlist1;
-		//playlist.findAllMusicInRangeWithStyle(0.37, 7.0, "Classical", playlist1); 
-		std::copy(playlist1.begin(), playlist1.end(), std::ostream_iterator<std::shared_ptr<BaseTrack>>(std::cout, " "));
+			case 0:
+			{
+				exit;
+				break;
+			}
+			default:
+				std::cout << "WRONG NUMBER , TRY AGAIN\n";
+				break;
+			}
+		}while (temp);
 
 	
-
-	/*	disk.Print(std::cout);
-		std::cout<<std::endl;
-		int temp1= disk.DurationOfMusic()*100;
-		std::cout <<" duration of music "<<(int)temp1/100<<" min "<<(int)temp1%100<<" sec "<<std::endl<<"size of music on disk(MB)"<<temp-disk.getsizeDisk()<<std::endl<<"free size on disk(MB)"<< disk.getsizeDisk();*/
-
-	
-
-
-
 
 	return 0;
 }

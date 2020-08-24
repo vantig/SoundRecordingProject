@@ -8,7 +8,7 @@ private:
 protected:
 	void setsize(double d) { freeSize = d; }
 public:
-	void ShuffleByStyle(std::string);
+
 	
 	Disk(double s) 
 	{
@@ -16,6 +16,7 @@ public:
     };
 
 	~Disk() = default;
+	
 	double DurationOfMusic();
 	double getsizeDisk()const { return freeSize; }
 	void copyPlaylist(Playlist&);
@@ -48,31 +49,8 @@ std::shared_ptr<BaseTrack> Disk::findMusicinRange(double start, double finish)
 		double duration = track->getDuration();
 		if (duration >= start && duration <= finish) {
 			std::cout << track;
-			return track; /* или */
+			return track; 
 		}
-	}
-}
-void Disk::ShuffleByStyle(std::string str)
-{
-	int temp;
-	bool flag = true;
-	srand(time(0));
-	for (size_t i = 0; i < this->playlist.size(); i++)
-	{
-		if (this->playlist[i]->getType()==str)
-		{
-			while (flag)
-			{
-				temp = rand() % this->playlist.size();
-				if (playlist[temp]->getType() == str)
-				{
-					this->playlist[i].swap(this->playlist[temp]);
-					flag = false;
-				}
-			}
-
-		}
-		
 	}
 }
 

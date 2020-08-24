@@ -11,14 +11,45 @@ public:
 	void Print(std::ostream& out);
 	void createPlaylistByStyle(std::istream& ,std::string );
 	void shuffle();
+	void ShuffleByStyle(std::string);
 	std::vector<std::shared_ptr<BaseTrack>>music;
-	std::shared_ptr<BaseTrack>findMusicinRange(double start, double finish);
-	std::vector<std::shared_ptr<BaseTrack>>findAllMusicInRangeWithStyle(double start, double finish, std::string str, std::vector<std::shared_ptr<BaseTrack>>&);
+	std::vector<std::shared_ptr<BaseTrack>>findMusicinRange(double start, double finish);
+	std::vector<std::shared_ptr<BaseTrack>>findAllMusicInRangeWithStyle(double start, double finish, std::string str);
 
 };
-std::vector<std::shared_ptr<BaseTrack>>Playlist::findAllMusicInRangeWithStyle
-(double start, double finish, std::string str, std::vector<std::shared_ptr<BaseTrack>>&music1)
+std::ostream& operator<<(std::ostream& out, std::vector<std::shared_ptr<BaseTrack>>v)
 {
+	std::copy(v.begin(), v.end(), std::ostream_iterator<std::shared_ptr<BaseTrack>>(out, "\n"));
+	return out;
+}
+void Playlist::ShuffleByStyle(std::string str)
+{
+	int temp;
+	bool flag = true;
+	srand(time(0));
+	for (size_t i = 0; i < this->music.size(); i++)
+	{
+		if (this->music[i]->getType() == str)
+		{
+			while (flag)
+			{
+				temp = rand() % this->music.size();
+				if (music[temp]->getType() == str)
+				{
+					this->music[i].swap(this->music[temp]);
+					flag = false;
+				}
+			}
+
+		}
+
+	}
+}
+
+std::vector<std::shared_ptr<BaseTrack>>Playlist::findAllMusicInRangeWithStyle
+(double start, double finish, std::string str)
+{
+	std::vector<std::shared_ptr<BaseTrack>>music1;
 	std::for_each(music.begin(), music.end(), [&music1,str,start, finish](std::shared_ptr<BaseTrack> &temp)
 		{
 			if (temp->getDuration() <= finish && start <= temp->getDuration()&&temp->getType()==str)
@@ -34,15 +65,17 @@ std::vector<std::shared_ptr<BaseTrack>>Playlist::findAllMusicInRangeWithStyle
 
 
 
-std::shared_ptr<BaseTrack> Playlist::findMusicinRange(double start, double finish)
-{
+std::vector<std::shared_ptr<BaseTrack>> Playlist::findMusicinRange(double start, double finish)
+{ 
+	std::vector<std::shared_ptr<BaseTrack>>music1;
 	for (auto& track : this->music) {
 		double duration = track->getDuration();
 		if (duration >= start && duration <= finish) {
 			std::cout << track;
-			return track; /* или */
+			music1.push_back( track); 
 		}
 	}
+	return music1;
 }
 
 //void swap(std::shared_ptr<BaseTrack>a, std::shared_ptr<BaseTrack>b)
