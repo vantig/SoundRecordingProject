@@ -58,7 +58,7 @@ std::vector<std::shared_ptr<BaseTrack>>Playlist::findAllMusicInRangeWithStyle
 				music1.push_back(temp);
 			}
 		});
-	std::copy(music1.begin(), music1.end(), std::ostream_iterator<std::shared_ptr<BaseTrack>>(std::cout," "));
+	/*std::copy(music1.begin(), music1.end(), std::ostream_iterator<std::shared_ptr<BaseTrack>>(std::cout," "));*/
 	return music1;
 
 }
