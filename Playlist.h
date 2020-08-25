@@ -13,7 +13,7 @@ public:
 	void shuffle();
 	void ShuffleByStyle(std::string);
 	std::vector<std::shared_ptr<BaseTrack>>findMusicinRange(double start, double finish);
-	std::vector<std::shared_ptr<BaseTrack>>findAllMusicInRangeWithStyle(double start, double finish, std::string str);
+	std::vector<std::shared_ptr<BaseTrack>> findAllMusicInRangeWithStyle(double start, double finish, std::string str);
 	std::vector<std::shared_ptr<BaseTrack>>music;
 
 };
